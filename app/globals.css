@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom utilities for text wrapping */
+@layer utilities {
+  .overflow-wrap-anywhere {
+    overflow-wrap: anywhere;
+    word-wrap: break-word;
+  }
+  
+  .word-break-break-word {
+    word-break: break-word;
+  }
+}
+
