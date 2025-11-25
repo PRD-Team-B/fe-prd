@@ -1,7 +1,8 @@
-<<<<<<< HEAD
-# Product Detail Page
+# fe-prd
 
 A **frontend-only** Next.js product detail page with review functionality, built with TypeScript and Tailwind CSS.
+
+**Ini Font-end** - Frontend only, no backend required.
 
 ## Features
 
@@ -9,7 +10,7 @@ A **frontend-only** Next.js product detail page with review functionality, built
 - Review section with "Read More" functionality
 - Reviews longer than 200 characters are truncated with a "Read more" button
 - Expandable/collapsible review text
-- Review submission form (client-side only, no backend required)
+- Rating system (numeric ratings)
 - Fully responsive design (mobile-friendly)
 - All data stored in React state (frontend only)
 
@@ -56,7 +57,3 @@ The static files will be in the `out` directory, ready to be deployed to any sta
 - Tailwind CSS
 - React 18
 - Client-side state management (React Hooks)
-=======
-# fe-prd
-Ini Font-end
->>>>>>> 2e52337f19ad9859fa0f0cb5a89cf41f3d159f61
