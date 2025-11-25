@@ -9,7 +9,7 @@ export default function Navbar() {
     <nav className="bg-white shadow-md">
       <div className="container mx-auto px-4 py-3 sm:py-4">
         <div className="flex items-center justify-between">
-          <h1 className="text-lg sm:text-xl font-bold text-gray-800">Navbar</h1>
+          <h1 className="text-lg sm:text-xl font-bold text-gray-800">WeRant</h1>
           {/* Desktop Menu */}
           <div className="hidden md:flex gap-4">
             <a href="#" className="text-gray-600 hover:text-gray-800 transition-colors">Home</a>
