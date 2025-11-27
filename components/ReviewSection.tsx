@@ -2,41 +2,22 @@
 
 import { useState } from 'react'
 import ReviewItem from './ReviewItem'
-
-interface Review {
-  id: number
-  name: string
-  review: string
-  rating: number
-}
+import { fetchReviews, Review } from '@/utils/apiService'
 
 export default function ReviewSection() {
-  const [reviews] = useState<Review[]>([
-    {
-      id: 1,
-      name: 'Sari Indah',
-      review: 'Produk sangat bagus dan sesuai dengan deskripsi. Kualitas bahan sangat baik dan nyaman dipakai. Kebaya ini sangat cocok untuk acara pernikahan. Detail lace-nya sangat indah dan rapi. Saya sangat puas dengan pembelian ini dan akan merekomendasikan ke teman-teman.',
-      rating: 5
-    },
-    {
-      id: 2,
-      name: 'Dewi Lestari',
-      review: 'Sangat memuaskan!',
-      rating: 4
-    },
-    {
-      id: 3,
-      name: 'Rina Sari',
-      review: 'Kebaya yang sangat elegan dan berkualitas tinggi. Bahan yang digunakan sangat nyaman dan tidak mudah kusut. Desainnya modern namun tetap mempertahankan nilai tradisional. Cocok untuk berbagai acara formal. Pelayanan juga sangat baik dan pengiriman cepat. Saya sangat senang dengan produk ini dan pasti akan order lagi di masa depan untuk acara-acara penting lainnya.',
-      rating: 5
-    },
-    {
-      id: 4,
-      name: 'Anissa nurhaliza',
-      review: 'adadadwKebaya yang sangat elegan dan berkualitas tinggi. Bahan yang digunakan sangat nyaman dan tidak mudah kusut. Desainnya modern namun tetap mempertahankan nilai tradisional. Cocok untuk berbagai acara formal. Pelayanan juga sangat baik dan pengiriman cepat. Saya sangat senang dengan produk ini dan pasti akan order lagi di masa depan untuk acara-acara penting lainnya..',
-      rating: 4
+  const [reviews, setReviews] = useState<Review[]>([
+    
+   useEffect(() => {
+    const loadReviews = async () => {
+      try {
+        const reviewsData = await fetchReviews()
+        setReviews(reviewsData)
+      } catch (error) {
+        console.error('Failed to load reviews:', error)
+      }
     }
-  ])
+    loadReviews()
+  }, [])
 
   // Calculate average rating
   const averageRating = reviews.length > 0
