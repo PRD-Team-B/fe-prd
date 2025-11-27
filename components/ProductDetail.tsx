@@ -1,15 +1,33 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { fetchProduct } from '@/utils/apiService'
 
 export default function ProductDetail() {
   // Product information - easily changeable
-  const productName = 'Kebaya wanita'
-  const productDescription = 'Kebaya modern yang elegan dengan desain batik tradisional. Terbuat dari bahan berkualitas tinggi dengan detail lace yang indah. Cocok untuk acara formal maupun semi-formal. Tersedia dalam berbagai ukuran dan warna. Produk ini menggabungkan keindahan tradisional dengan sentuhan modern yang timeless.'
-  const pricePerDay = 'Rp 150.000.000' // Change this to update the price
+  const [product, setProduct] = useState({
+    id: 1,
+    title: 'Kebaya wanita',
+    description: 'Kebaya modern yang elegan dengan desain batik tradisional. Terbuat dari bahan berkualitas tinggi dengan detail lace yang indah. Cocok untuk acara formal maupun semi-formal. Tersedia dalam berbagai ukuran dan warna. Produk ini menggabungkan keindahan tradisional dengan sentuhan modern yang timeless.',
+    price: 'Rp 150.000.000',
+    image: '/images/foto-kebaya-wanita.jpg',
+    quantity: 1
+  })
 
   const [imageError, setImageError] = useState(false)
   const [imageLoaded, setImageLoaded] = useState(false)
+
+   useEffect(() => {
+    const loadProduct = async () => {
+      try {
+        const productData = await fetchProduct()
+        setProduct(productData)
+      } catch (error) {
+        console.error('Failed to load product:', error)
+      }
+    }
+    loadProduct()
+  }, [])
 
   return (
     <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 mb-6 sm:mb-8">
@@ -61,6 +79,12 @@ export default function ProductDetail() {
           <div>
             <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-1 sm:mb-2">Harga per hari</h3>
             <p className="text-2xl sm:text-3xl font-bold text-blue-600 break-words">{pricePerDay}</p>
+          </div>
+
+           {/* Quantity */}
+          <div>
+            <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-1 sm:mb-2">Quantity</h3>
+            <p className="text-lg sm:text-xl font-semibold text-gray-700">{product.quantity}</p>
           </div>
         </div>
       </div>
