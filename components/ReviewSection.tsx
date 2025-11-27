@@ -6,14 +6,21 @@ import { fetchReviews, Review } from '@/utils/apiService'
 
 export default function ReviewSection() {
   const [reviews, setReviews] = useState<Review[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     const loadReviews = async () => {
       try {
+        setLoading(true)
+        setError(null)
         const reviewsData = await fetchReviews()
         setReviews(reviewsData)
       } catch (error) {
         console.error('Failed to load reviews:', error)
+        setError('Failed to load reviews. Please try refreshing the page.')
+      } finally {
+        setLoading(false)
       }
     }
     loadReviews()
