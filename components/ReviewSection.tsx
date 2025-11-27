@@ -1,13 +1,13 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import ReviewItem from './ReviewItem'
 import { fetchReviews, Review } from '@/utils/apiService'
 
 export default function ReviewSection() {
-  const [reviews, setReviews] = useState<Review[]>([
-    
-   useEffect(() => {
+  const [reviews, setReviews] = useState<Review[]>([])
+
+  useEffect(() => {
     const loadReviews = async () => {
       try {
         const reviewsData = await fetchReviews()
