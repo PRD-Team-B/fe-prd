@@ -4,11 +4,20 @@
 
 const API_BASE_URL = 'https://be-prd-production.up.railway.app'
 
-interface Review {
+export interface Review {
   id: number
   name: string
   review: string
   rating: number
+}
+
+interface Product {
+  id: number
+  title: string
+  description: string
+  price: string
+  image: string
+  quantity: number
 }
 
 interface ApiResponse<T> {
@@ -91,6 +100,68 @@ export async function fetchReviews(endpoint: string = '/products/1'): Promise<Re
         rating: 5
       }
     ]
+  }
+}
+
+/**
+ * Fetch product details from the API
+ * @param endpoint - The API endpoint path (default: '/products/1')
+ * @returns Promise with product data
+ */
+export async function fetchProduct(endpoint: string = '/products/1'): Promise<Product> {
+  try {
+    const fullUrl = `${API_BASE_URL}${endpoint}`
+    console.log('Fetching product from:', fullUrl)
+
+    const response = await fetch(fullUrl, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      mode: 'cors',
+    })
+
+    console.log('Response status:', response.status)
+
+    if (!response.ok) {
+      throw new Error(`API returned ${response.status}: ${response.statusText}`)
+    }
+
+    const result = await response.json()
+    console.log('Raw API response:', result)
+
+    // Check if the response has the expected structure
+    if (result && result.data) {
+      // Map API fields to component expected fields
+      const product: Product = {
+        id: result.data.id,
+        title: result.data.title || 'Kebaya wanita',
+        description: result.data.description || 'Kebaya modern yang elegan dengan desain batik tradisional.',
+        price: result.data.price || 'Rp 150.000.000',
+        image: result.data.image || '/images/foto-kebaya-wanita.jpg',
+        quantity: result.data.quantity || 1
+      }
+
+      console.log('Successfully fetched and mapped product from API:', product)
+      return product
+    } else {
+      console.error('Unexpected API response structure:', result)
+      throw new Error('API response does not contain product data in expected format')
+    }
+  } catch (error) {
+    console.error('Error fetching product from API:', error)
+
+    // Return fallback data if API fails
+    console.log('Using fallback product data due to API failure')
+    return {
+      id: 1,
+      title: 'Kebaya wanita',
+      description: 'Kebaya modern yang elegan dengan desain batik tradisional. Terbuat dari bahan berkualitas tinggi dengan detail lace yang indah. Cocok untuk acara formal maupun semi-formal. Tersedia dalam berbagai ukuran dan warna. Produk ini menggabungkan keindahan tradisional dengan sentuhan modern yang timeless.',
+      price: 'Rp 150.000.000',
+      image: '/images/foto-kebaya-wanita.jpg',
+      quantity: 1
+    }
   }
 }
 
