@@ -20,13 +20,13 @@ export interface Product {
   reviews?: Review[]        // optional jika API ikut mengirimkan review
 }
 
-const API_BASE_URL = "https://be-prd-production.up.railway.app"
+const API_BASE_URL = "https://be-prd-production.up.railway.app/products/1"
 
 /**
  * Fetch Reviews Data from API
  */
 export async function fetchReviews(): Promise<Review[]> {
-  const res = await fetch(`${API_BASE_URL}/products/1`, {
+  const res = await fetch(API_BASE_URL, {
     cache: "no-store", // selalu ambil data terbaru
   })
 
@@ -53,7 +53,7 @@ export async function fetchReviews(): Promise<Review[]> {
  * Fetch Product Data from API
  */
 export async function fetchProduct(): Promise<Product> {
-  const res = await fetch(`${API_BASE_URL}/products/1`, {
+  const res = await fetch(API_BASE_URL, {
     cache: "no-store",
   })
 
