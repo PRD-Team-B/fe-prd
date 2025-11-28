@@ -39,7 +39,7 @@ Then, run the development server:
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open ([WeRent](https://fe-prd-production.up.railway.app/))) with your browser to see the result.
 
 ## Building for Production
 
@@ -128,3 +128,4 @@ The static files will be in the `out` directory, ready to be deployed to any sta
     ├── apiService.ts     # API service utility
     └── textTruncate.ts   # Text truncation utility
 ```
+
