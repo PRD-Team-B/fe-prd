@@ -15,16 +15,6 @@ A **frontend-only** Next.js product detail page with review functionality, built
 - All data stored in React state (frontend only)
 - Fetch and display customer reviews from an API
 
-## Important Notes
-
-⚠️ **This is a frontend-only application:**
-
-- No backend server required
-- No API endpoints
-- All data (reviews, product info) is stored in React state
-- Data is not persisted (resets on page refresh)
-- Perfect for static hosting (Vercel, Netlify, GitHub Pages, etc.)
-
 ## Getting Started
 
 First, install the dependencies:
