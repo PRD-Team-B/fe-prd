@@ -119,3 +119,6 @@ The static files will be in the `out` directory, ready to be deployed to any sta
     └── textTruncate.ts   # Text truncation utility
 ```
 
+## Contributing
+
+This is created by Mardianto Dwi Ahmad and Nurhalimah as part of Team B.
